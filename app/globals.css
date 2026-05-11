@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+.markdown-body .math-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
