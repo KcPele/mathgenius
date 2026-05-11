@@ -9,7 +9,7 @@ WORKDIR /app
 # Enable pnpm
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
 
 # Install dependencies based on the preferred package manager
 COPY package.json pnpm-lock.yaml .npmrc ./
@@ -21,7 +21,7 @@ WORKDIR /app
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+RUN corepack enable && corepack prepare pnpm@10.15.0 --activate
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
