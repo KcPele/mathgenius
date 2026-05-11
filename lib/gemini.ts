@@ -1,15 +1,16 @@
-import { Difficulty, MathQuestion, ModelId } from './types';
+import { Difficulty, MathQuestion, Provider } from './types';
 
 export async function generateMathQuestion(
   difficulty: Difficulty,
-  model: ModelId
+  model: string,
+  provider: Provider
 ): Promise<MathQuestion> {
   const response = await fetch('/api/generate-question', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ difficulty, model }),
+    body: JSON.stringify({ difficulty, model, provider }),
   });
 
   if (!response.ok) {
