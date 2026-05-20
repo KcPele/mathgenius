@@ -121,7 +121,7 @@ export default function TaitorApp() {
           isFullReveal={isFullReveal}
         />
 
-        <footer className="mt-4 pt-6 border-t border-black/10 text-xs text-neutral-500 text-center">
+        <footer className="mt-4 pt-6 border-t border-foreground/10 text-xs text-neutral-500 text-center">
           Set <code className="font-mono">OPENROUTER_API_KEY</code> in <code className="font-mono">.env.local</code> · model is saved per browser.
         </footer>
       </div>

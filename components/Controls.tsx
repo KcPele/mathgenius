@@ -14,6 +14,9 @@ interface Props {
   onFullReveal: () => void;
 }
 
+const baseBtn =
+  'inline-flex items-center gap-2 px-5 py-3 rounded-full border-2 border-foreground font-semibold text-sm shadow-pop hover:-translate-y-0.5 transition-transform disabled:opacity-50 disabled:cursor-not-allowed';
+
 export default function Controls({
   isGenerating,
   question,
@@ -30,11 +33,7 @@ export default function Controls({
       <button
         onClick={onGenerate}
         disabled={isGenerating}
-        className={cn(
-          'inline-flex items-center gap-2 px-5 py-3 rounded-full border-2 border-black font-semibold text-sm',
-          'bg-black text-white shadow-[3px_3px_0_0_#000] hover:-translate-y-0.5 transition-transform',
-          'disabled:opacity-50 disabled:cursor-not-allowed'
-        )}
+        className={cn(baseBtn, 'bg-foreground text-canvas')}
       >
         {isGenerating ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
         Generate
@@ -43,11 +42,7 @@ export default function Controls({
       <button
         onClick={onShowStep}
         disabled={isGenerating || !question || stepsDone}
-        className={cn(
-          'inline-flex items-center gap-2 px-5 py-3 rounded-full border-2 border-black font-semibold text-sm',
-          'bg-[#c8b6ff] text-black shadow-[3px_3px_0_0_#000] hover:-translate-y-0.5 transition-transform',
-          'disabled:opacity-50 disabled:cursor-not-allowed'
-        )}
+        className={cn(baseBtn, 'bg-pop-purple text-foreground')}
       >
         <Eye className="w-4 h-4" />
         Show Step
@@ -56,11 +51,7 @@ export default function Controls({
       <button
         onClick={onFullReveal}
         disabled={isGenerating || !question || isFullReveal || stepsDone}
-        className={cn(
-          'inline-flex items-center gap-2 px-5 py-3 rounded-full border-2 border-black font-semibold text-sm',
-          'bg-[#ffe066] text-black shadow-[3px_3px_0_0_#000] hover:-translate-y-0.5 transition-transform',
-          'disabled:opacity-50 disabled:cursor-not-allowed'
-        )}
+        className={cn(baseBtn, 'bg-pop-yellow text-foreground')}
       >
         <CheckCircle className="w-4 h-4" />
         Full Reveal

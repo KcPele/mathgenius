@@ -1,17 +1,19 @@
 import { cn } from '@/lib/utils';
 
+type PopColor = 'purple' | 'yellow' | 'pink' | 'green' | 'blue';
+
 interface Props {
-  color?: 'purple' | 'yellow' | 'pink' | 'green' | 'blue';
+  color?: PopColor;
   className?: string;
   children?: React.ReactNode;
 }
 
-const palette: Record<NonNullable<Props['color']>, string> = {
-  purple: 'fill-[#c8b6ff]',
-  yellow: 'fill-[#ffe066]',
-  pink: 'fill-[#ffb3ab]',
-  green: 'fill-[#bce29e]',
-  blue: 'fill-[#a8d8ff]',
+const fillByColor: Record<PopColor, string> = {
+  purple: 'fill-pop-purple',
+  yellow: 'fill-pop-yellow',
+  pink: 'fill-pop-pink',
+  green: 'fill-pop-green',
+  blue: 'fill-pop-blue',
 };
 
 export default function Starburst({ color = 'purple', className, children }: Props) {
@@ -26,7 +28,7 @@ export default function Starburst({ color = 'purple', className, children }: Pro
           d={
             'M50 4 L58 22 L78 14 L72 34 L94 38 L78 52 L94 66 L72 70 L78 88 L58 80 L50 96 L42 80 L22 88 L28 70 L6 66 L22 52 L6 38 L28 34 L22 14 L42 22 Z'
           }
-          className={cn(palette[color], 'stroke-black')}
+          className={cn(fillByColor[color], 'stroke-foreground')}
           strokeWidth={2.5}
           strokeLinejoin="round"
         />
