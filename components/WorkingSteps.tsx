@@ -18,7 +18,7 @@ export default function WorkingSteps({ question, revealedSteps, isGenerating, is
   const stepsDone = !!question && revealedSteps >= question.workingSteps.length && revealedSteps > 0;
 
   return (
-    <section className="rounded-3xl bg-[#fffaf0] border-2 border-black p-7 sm:p-10 shadow-[6px_6px_0_0_#000] min-h-[260px]">
+    <section className="rounded-3xl bg-cream border-2 border-foreground p-7 sm:p-10 shadow-pop-lg min-h-[260px]">
       <h3 className="text-xs font-bold tracking-[0.25em] text-neutral-500 uppercase mb-6">
         Solution Steps
       </h3>
@@ -34,10 +34,10 @@ export default function WorkingSteps({ question, revealedSteps, isGenerating, is
                 transition={{ duration: 0.35, ease: 'easeOut' }}
                 className="flex gap-4 items-start"
               >
-                <div className="flex-shrink-0 w-9 h-9 rounded-full bg-white border-2 border-black flex items-center justify-center font-display text-sm shadow-[2px_2px_0_0_#000]">
+                <div className="flex-shrink-0 w-9 h-9 rounded-full bg-canvas border-2 border-foreground flex items-center justify-center font-display text-sm shadow-pop-sm">
                   {index + 1}
                 </div>
-                <div className="markdown-body pt-1 text-neutral-800 text-lg leading-relaxed overflow-x-auto">
+                <div className="markdown-body pt-1 text-foreground text-lg leading-relaxed overflow-x-auto">
                   <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                     {step}
                   </ReactMarkdown>
@@ -54,12 +54,12 @@ export default function WorkingSteps({ question, revealedSteps, isGenerating, is
               initial={{ opacity: 0, scale: 0.96, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.15, type: 'spring' }}
-              className="mt-8 p-6 rounded-2xl bg-[#bce29e] border-2 border-black text-center overflow-x-auto shadow-[3px_3px_0_0_#000]"
+              className="mt-8 p-6 rounded-2xl bg-pop-green border-2 border-foreground text-center overflow-x-auto shadow-pop"
             >
-              <h4 className="text-xs font-bold tracking-[0.25em] text-black/70 uppercase mb-3">
+              <h4 className="text-xs font-bold tracking-[0.25em] text-foreground/70 uppercase mb-3">
                 Final Answer
               </h4>
-              <div className="markdown-body text-3xl text-black font-semibold">
+              <div className="markdown-body text-3xl text-foreground font-semibold">
                 <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                   {question!.finalAnswer}
                 </ReactMarkdown>
@@ -76,16 +76,16 @@ export default function WorkingSteps({ question, revealedSteps, isGenerating, is
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.45, delay: 0.4 }}
-              className="p-5 rounded-2xl bg-[#ffe066] border-2 border-black flex gap-4 items-start shadow-[3px_3px_0_0_#000]"
+              className="p-5 rounded-2xl bg-pop-yellow border-2 border-foreground flex gap-4 items-start shadow-pop"
             >
-              <div className="flex-shrink-0 w-9 h-9 rounded-full bg-white border-2 border-black flex items-center justify-center">
+              <div className="flex-shrink-0 w-9 h-9 rounded-full bg-canvas border-2 border-foreground flex items-center justify-center">
                 <Lightbulb className="w-4 h-4" />
               </div>
               <div>
-                <p className="text-xs font-bold tracking-[0.25em] text-black/70 uppercase mb-1">
+                <p className="text-xs font-bold tracking-[0.25em] text-foreground/70 uppercase mb-1">
                   Tutor Tip
                 </p>
-                <p className="text-black text-sm leading-relaxed">{question.tip}</p>
+                <p className="text-foreground text-sm leading-relaxed">{question.tip}</p>
               </div>
             </motion.div>
           )}

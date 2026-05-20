@@ -17,10 +17,10 @@ interface Props {
 
 export default function QuestionDisplay({ difficulty, question, isGenerating, error }: Props) {
   return (
-    <section className="relative rounded-3xl bg-white border-2 border-black p-7 sm:p-10 shadow-[6px_6px_0_0_#000]">
+    <section className="relative rounded-3xl bg-canvas border-2 border-foreground p-7 sm:p-10 shadow-pop-lg">
       <div className="absolute -top-6 -left-4 w-16 h-16 sm:w-20 sm:h-20">
         <Starburst color="yellow">
-          <span className="font-display text-base sm:text-lg text-black">{difficulty}</span>
+          <span className="font-display text-base sm:text-lg text-foreground">{difficulty}</span>
         </Starburst>
       </div>
 
@@ -62,11 +62,11 @@ export default function QuestionDisplay({ difficulty, question, isGenerating, er
               transition={{ duration: 0.3 }}
             >
               <div className="mb-4">
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-black text-white tracking-wide uppercase">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-foreground text-canvas tracking-wide uppercase">
                   {question.topic}
                 </span>
               </div>
-              <div className="markdown-body text-xl sm:text-2xl text-black font-medium leading-relaxed overflow-x-auto pb-2">
+              <div className="markdown-body text-xl sm:text-2xl text-foreground font-medium leading-relaxed overflow-x-auto pb-2">
                 <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                   {question.questionText}
                 </ReactMarkdown>
