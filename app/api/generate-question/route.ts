@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${apiKey}`,
         'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-        'X-Title': 'Taitor',
+        'X-Title': 'StarGirl',
       },
       body: JSON.stringify({
         model,

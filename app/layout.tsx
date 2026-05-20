@@ -14,7 +14,7 @@ const display = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: 'Taitor — your math tutor',
+  title: 'StarGirl — your math tutor',
   description: 'AI-powered math practice for secondary school students worldwide.',
 };
 
