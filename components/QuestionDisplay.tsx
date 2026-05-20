@@ -8,6 +8,7 @@ import { Loader2 } from 'lucide-react';
 import { Difficulty, MathQuestion } from '@/lib/types';
 import Starburst from './Starburst';
 import Diagram from './Diagram';
+import ShareButton from './realtime/ShareButton';
 
 interface Props {
   difficulty: Difficulty;
@@ -25,10 +26,11 @@ export default function QuestionDisplay({ difficulty, question, isGenerating, er
         </Starburst>
       </div>
 
-      <div className="flex items-center justify-between mb-5 pl-14 sm:pl-16">
+      <div className="flex items-center justify-between mb-5 pl-14 sm:pl-16 gap-3">
         <h2 className="text-xs font-bold tracking-[0.25em] text-neutral-500 uppercase">
           Current Problem
         </h2>
+        <ShareButton question={question} disabled={isGenerating} />
       </div>
 
       <div className="min-h-[140px]">

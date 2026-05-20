@@ -1,23 +1,85 @@
-import { Sparkles } from 'lucide-react';
+'use client';
 
-export default function Header() {
+import { Sparkles, Settings, User } from 'lucide-react';
+import { useState } from 'react';
+import type { MathQuestion } from '@/lib/types';
+import { useIdentityStore } from '@/lib/stores/identity';
+import { useRealtimeStore } from '@/lib/stores/realtime';
+import SettingsModal from './realtime/SettingsModal';
+import NotificationBell from './realtime/NotificationBell';
+
+interface Props {
+  onOpenSharedQuestion: (question: MathQuestion) => void;
+}
+
+export default function Header({ onOpenSharedQuestion }: Props) {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const displayName = useIdentityStore((s) => s.displayName);
+  const status = useRealtimeStore((s) => s.status);
+  const userCount = useRealtimeStore((s) => s.users.length);
+
   return (
-    <header className="rounded-3xl bg-mint border-2 border-foreground px-5 sm:px-8 py-3 sm:py-4 flex items-center justify-between shadow-pop-lg">
-      <div className="flex items-center gap-3">
+    <header className="rounded-3xl bg-mint border-2 border-foreground px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-3 shadow-pop-lg">
+      <div className="flex items-center gap-3 min-w-0">
         <Mascot />
         <span className="font-display text-2xl sm:text-3xl tracking-tight text-foreground">
           StarGirl
         </span>
       </div>
-      <nav className="hidden sm:flex items-center gap-1 text-sm font-medium">
-        <span className="px-4 py-2 rounded-full bg-foreground text-canvas">My Tutor</span>
-        <span className="px-4 py-2 rounded-full text-neutral-700">Lessons</span>
-        <span className="px-4 py-2 rounded-full text-neutral-700">Settings</span>
-      </nav>
-      <span className="sm:hidden inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-foreground text-canvas text-xs font-medium">
-        <Sparkles className="w-3.5 h-3.5" /> Tutor
-      </span>
+
+      <div className="flex items-center gap-2 sm:gap-3">
+        <PresenceBadge status={status} count={userCount} />
+
+        <button
+          type="button"
+          onClick={() => setSettingsOpen(true)}
+          className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-canvas border-2 border-foreground text-sm font-semibold shadow-pop-sm hover:-translate-y-0.5 transition-transform max-w-[180px]"
+          aria-label="Open settings"
+        >
+          <User className="w-3.5 h-3.5 shrink-0" />
+          <span className="truncate">{displayName}</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setSettingsOpen(true)}
+          className="sm:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-canvas border-2 border-foreground shadow-pop-sm"
+          aria-label="Open settings"
+        >
+          <Settings className="w-4 h-4" />
+        </button>
+
+        <NotificationBell onOpenQuestion={onOpenSharedQuestion} />
+
+        <span className="sm:hidden inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-foreground text-canvas text-xs font-medium">
+          <Sparkles className="w-3.5 h-3.5" /> Tutor
+        </span>
+      </div>
+
+      <SettingsModal open={settingsOpen} onOpenChange={setSettingsOpen} />
     </header>
+  );
+}
+
+function PresenceBadge({ status, count }: { status: string; count: number }) {
+  const tone =
+    status === 'open'
+      ? 'bg-pop-green'
+      : status === 'connecting'
+      ? 'bg-pop-yellow'
+      : 'bg-pop-pink';
+  return (
+    <span
+      className={`hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${tone} border-2 border-foreground text-xs font-bold shadow-pop-sm`}
+      title={`Realtime: ${status}`}
+    >
+      <span
+        className="w-2 h-2 rounded-full"
+        style={{ background: 'var(--color-foreground)' }}
+        aria-hidden
+      />
+      {count} online
+    </span>
   );
 }
 
