@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="en"
       className={`${sans.variable} ${display.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#f7f4ec] text-black font-sans">
+      <body className="min-h-full flex flex-col bg-canvas text-foreground font-sans">
         {children}
       </body>
     </html>

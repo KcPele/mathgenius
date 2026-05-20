@@ -29,13 +29,13 @@ function StatCard({
   value: string;
 }) {
   return (
-    <div className="rounded-2xl bg-[#ededed] border-2 border-black px-5 py-4 flex items-center gap-4 shadow-[4px_4px_0_0_#000]">
+    <div className="rounded-2xl bg-paper border-2 border-foreground px-5 py-4 flex items-center gap-4 shadow-pop-md">
       <div className="w-14 h-14 shrink-0">
         <Starburst color={color} />
       </div>
       <div className="min-w-0">
         <p className="text-[10px] font-bold tracking-[0.25em] text-neutral-500 uppercase">{label}</p>
-        <p className="font-display text-lg text-black truncate">{value}</p>
+        <p className="font-display text-lg text-foreground truncate">{value}</p>
       </div>
     </div>
   );

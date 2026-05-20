@@ -4,7 +4,23 @@
 @theme inline {
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
-  --color-background: #f7f4ec;
+
+  /* surfaces */
+  --color-canvas: #f7f4ec;
+  --color-mint: #d6ebbb;
+  --color-cream: #fffaf0;
+  --color-paper: #ededed;
+  --color-mascot: #fbd6df;
+
+  /* sticker / pop accents */
+  --color-pop-purple: #c8b6ff;
+  --color-pop-yellow: #ffe066;
+  --color-pop-pink: #ffb3ab;
+  --color-pop-green: #bce29e;
+  --color-pop-blue: #a8d8ff;
+
+  /* foreground */
+  --color-background: var(--color-canvas);
   --color-foreground: #0a0a0a;
 }
 
@@ -18,6 +34,20 @@ body {
   font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
   font-weight: 800;
   letter-spacing: -0.02em;
+}
+
+/* Neobrutalist offset drop-shadow utilities */
+.shadow-pop-sm {
+  box-shadow: 2px 2px 0 0 var(--color-foreground);
+}
+.shadow-pop {
+  box-shadow: 3px 3px 0 0 var(--color-foreground);
+}
+.shadow-pop-md {
+  box-shadow: 4px 4px 0 0 var(--color-foreground);
+}
+.shadow-pop-lg {
+  box-shadow: 6px 6px 0 0 var(--color-foreground);
 }
 
 .markdown-body .math-display {
