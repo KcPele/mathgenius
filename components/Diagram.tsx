@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import DOMPurify from 'isomorphic-dompurify';
 import { Loader2 } from 'lucide-react';
 import { Diagram as DiagramData } from '@/lib/types';
@@ -21,7 +21,7 @@ export default function Diagram({ diagram, className }: Props) {
     >
       <div className="w-full overflow-x-auto flex items-center justify-center text-foreground">
         {diagram.kind === 'mermaid' ? (
-          <MermaidRenderer source={diagram.source} />
+          <MermaidRenderer key={diagram.source} source={diagram.source} />
         ) : (
           <SvgRenderer source={diagram.source} />
         )}
@@ -39,13 +39,8 @@ function MermaidRenderer({ source }: { source: string }) {
   const reactId = useId().replace(/[^a-zA-Z0-9]/g, '');
   const [svg, setSvg] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const mounted = useRef(true);
 
   useEffect(() => {
-    mounted.current = true;
-    setSvg('');
-    setError(null);
-
     let cancelled = false;
     (async () => {
       try {
