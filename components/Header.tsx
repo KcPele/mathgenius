@@ -6,7 +6,7 @@ export default function Header() {
       <div className="flex items-center gap-3">
         <Mascot />
         <span className="font-display text-2xl sm:text-3xl tracking-tight text-foreground">
-          TAITOR
+          StarGirl
         </span>
       </div>
       <nav className="hidden sm:flex items-center gap-1 text-sm font-medium">

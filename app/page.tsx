@@ -11,10 +11,10 @@ import QuestionDisplay from '@/components/QuestionDisplay';
 import Controls from '@/components/Controls';
 import WorkingSteps from '@/components/WorkingSteps';
 
-const MODEL_KEY = 'taitor_openrouter_model';
+const MODEL_KEY = 'stargirl_openrouter_model';
 const DEFAULT_MODEL = 'xiaomi/mimo-v2.5-pro';
 
-export default function TaitorApp() {
+export default function StarGirlApp() {
   const [difficulty, setDifficulty] = useState<Difficulty>('Easy');
   const [model, setModel] = useState<string>('');
   const [question, setQuestion] = useState<MathQuestion | null>(null);
