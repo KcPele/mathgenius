@@ -25,6 +25,27 @@ export default function WorkingSteps({ question, revealedSteps, isGenerating, is
 
       <div className="space-y-5">
         <AnimatePresence>
+          {question?.stepsIntro && revealedSteps > 0 && (
+            <motion.div
+              key="steps-intro"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="rounded-2xl bg-canvas border-2 border-foreground p-4 sm:p-5 shadow-pop-sm"
+            >
+              <p className="text-[10px] font-bold tracking-[0.25em] text-neutral-500 uppercase mb-2">
+                About this problem
+              </p>
+              <div className="markdown-body text-foreground text-base leading-relaxed">
+                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                  {question.stepsIntro}
+                </ReactMarkdown>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
           {question?.workingSteps.map((step, index) =>
             index < revealedSteps ? (
               <motion.div

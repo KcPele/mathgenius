@@ -7,6 +7,7 @@ import rehypeKatex from 'rehype-katex';
 import { Loader2 } from 'lucide-react';
 import { Difficulty, MathQuestion } from '@/lib/types';
 import Starburst from './Starburst';
+import Diagram from './Diagram';
 
 interface Props {
   difficulty: Difficulty;
@@ -71,6 +72,7 @@ export default function QuestionDisplay({ difficulty, question, isGenerating, er
                   {question.questionText}
                 </ReactMarkdown>
               </div>
+              {question.diagram && <Diagram diagram={question.diagram} />}
             </motion.div>
           ) : (
             <motion.div
