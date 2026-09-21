@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SYSTEM_INSTRUCTION } from '@/lib/constants';
+import { parseOpenRouterQuestion } from '@/lib/openrouter-response';
 
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
@@ -33,8 +34,8 @@ export async function POST(request: NextRequest) {
           { role: 'system', content: SYSTEM_INSTRUCTION },
           { role: 'user', content: `Generate a ${difficulty} level question.` },
         ],
-        response_format: { type: 'json_object' },
         temperature: 0.8,
+        max_tokens: 8048,
       }),
     });
 
@@ -48,7 +49,7 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json();
     const content: string = data.choices?.[0]?.message?.content ?? '';
-    const question = JSON.parse(content);
+    const question = parseOpenRouterQuestion(content);
 
     return NextResponse.json(question);
   } catch (err) {
